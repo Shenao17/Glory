@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Para ti, Glorita ♡</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sky-layer" aria-hidden="true">
+  <div class="cloud cloud--a"></div>
+  <div class="cloud cloud--b"></div>
+  <div class="cloud cloud--c"></div>
+  <div class="stars"></div>
+</div>
+
+<section id="gate" class="gate">
+  <div class="gate__content">
+    <div class="gate__companion" aria-hidden="true">
+      <img src="assets/cinnamonroll-hero.png" alt="" class="gate__companion-img" onerror="this.style.display='none'; this.parentElement.classList.add('gate__companion--placeholder');">
+      <span class="gate__companion-fallback">☁</span>
+    </div>
+    <h1 class="gate__title">Esto es para ti, Glorita <span class="heart">♡</span></h1>
+    <p class="gate__subtitle">Un pequeño lugar para recordarte lo importante que eres para mí.</p>
+    <button id="enter-btn" class="btn btn--primary gate__enter" type="button">
+      <span class="heart heart--small">♡</span> Entrar
+    </button>
+  </div>
+</section>
+
+<main id="main" class="main" hidden>
+
+  <section class="section section--intro" data-reveal>
+    <div class="section__inner">
+      <h2 class="section__eyebrow">¿Sabes qué?</h2>
+      <p class="reveal-text" data-reveal-text>Hay personas que llegan a nuestra vida y simplemente están ahí... Y luego están las personas que, sin darse cuenta, terminan ocupando un lugar muy especial. Tú eres una de esas personas para mí.</p>
+    </div>
+  </section>
+
+  <section class="section section--cards" data-reveal>
+    <div class="section__inner">
+      <h2 class="section__eyebrow">Lo que quiero que recuerdes</h2>
+      <p class="section__hint">Toca cada nube para abrirla.</p>
+      <div class="card-grid" data-card-grid>
+        <button class="flip-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--back">Eres importante para mí.</span>
+        </button>
+        <button class="flip-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--back">Me alegra muchísimo haberte conocido.</span>
+        </button>
+        <button class="flip-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--back">Tu presencia hace que ciertos momentos sean mucho más bonitos.</span>
+        </button>
+        <button class="flip-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--back">No tienes que hacer nada extraordinario para ser especial para mí.</span>
+        </button>
+        <button class="flip-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--back">Te quiero muchísimo, incluso cuando no sé cómo expresarlo.</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gratitude" data-reveal>
+    <div class="section__inner section__inner--narrow">
+      <h2 class="section__eyebrow">Antes de todo esto, tú estuviste ahí</h2>
+      <div class="gratitude-text">
+        <p>Hay algo que nunca quiero olvidar.</p>
+        <p>Cuando te conocí, yo estaba pasando por un momento en el que necesitaba que alguien me tendiera la mano.</p>
+        <p>Y tú lo hiciste.</p>
+        <p>Quizá para ti fue algo que simplemente hiciste porque te nació, pero para mí significó muchísimo más.</p>
+        <p class="gratitude-text--emphasis">Me salvaste cuando más lo necesitaba.</p>
+        <p>Y desde entonces, una parte de mí siempre va a guardar un agradecimiento enorme por ti.</p>
+        <p>Gracias por haber aparecido en mi vida.<br>
+        Gracias por haber estado ahí.<br>
+        Y gracias por convertirte, con el tiempo, en alguien tan importante para mí.</p>
+      </div>
+      <p class="gratitude-closing">Quizá tú no recuerdes ese momento de la misma manera que yo... pero yo nunca voy a olvidar lo que significó para mí. 🤍</p>
+    </div>
+  </section>
+
+  <section class="section section--memories" data-reveal>
+    <div class="section__inner">
+      <h2 class="section__eyebrow">Pequeñas cosas que me recuerdan a ti</h2>
+      <p class="section__hint">Toca cada una.</p>
+      <div class="memory-grid" data-card-grid>
+        <button class="memory-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">Una conversación inesperada</span>
+          <span class="flip-card__face flip-card__face--back">De esas que empiezan sin planearlo y terminan quedándose contigo el resto del día.</span>
+        </button>
+        <button class="memory-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">Un momento tranquilo</span>
+          <span class="flip-card__face flip-card__face--back">Esos silencios cómodos en los que no hace falta decir nada para sentirse bien.</span>
+        </button>
+        <button class="memory-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">Una risa</span>
+          <span class="flip-card__face flip-card__face--back">Tu risa tiene la costumbre de quedarse sonando en mi cabeza un rato después.</span>
+        </button>
+        <button class="memory-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">Una noche cualquiera</span>
+          <span class="flip-card__face flip-card__face--back">Algunas de las noches más comunes terminaron siendo las que más recuerdo.</span>
+        </button>
+        <button class="memory-card" type="button" data-flip>
+          <span class="flip-card__face flip-card__face--front">Un recuerdo que todavía guardo</span>
+          <span class="flip-card__face flip-card__face--back">Uno pequeño, de esos que no le cuento a nadie, pero que sigo guardando con cariño.</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cinnamon" data-reveal>
+    <div class="section__inner">
+      <h2 class="section__eyebrow">Cinnamonroll tiene algo que decirte...</h2>
+      <div class="cinnamon-stage">
+        <div class="cinnamon-figure" aria-hidden="true">
+          <img src="assets/cinnamonroll-big.png" alt="" class="cinnamon-figure__img" onerror="this.style.display='none'; this.parentElement.classList.add('cinnamon-figure--placeholder');">
+          <span class="cinnamon-figure__fallback">☁</span>
+        </div>
+        <button id="cinnamon-btn" class="btn btn--secondary" type="button">¿Qué será? 👀</button>
+        <p id="cinnamon-message" class="cinnamon-message" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--thanks" data-reveal>
+    <div class="section__inner section__inner--narrow">
+      <h2 class="section__eyebrow">Gracias</h2>
+      <p>Gracias por estar.</p>
+      <p>Gracias por los momentos, por las conversaciones, por las risas y hasta por esas pequeñas cosas que probablemente tú ni recuerdas.</p>
+      <p>Puede que para ti algunas hayan sido cosas normales, pero para mí se quedaron guardadas.</p>
+    </div>
+  </section>
+
+  <section class="section section--letter" data-reveal>
+    <div class="section__inner section__inner--narrow">
+      <h2 class="section__eyebrow">Una última cosa...</h2>
+      <div class="letter" data-letter>
+        <button class="letter__seal" type="button" data-letter-open aria-expanded="false">
+          <span class="heart heart--large">♡</span>
+          <span class="letter__seal-label">Abrir la carta</span>
+        </button>
+        <div class="letter__paper" data-letter-paper hidden>
+          <p>Glorita,</p>
+          <p>No hice esta página porque creyera que unas palabras podían decirlo todo.</p>
+          <p>La hice porque quería dejar en algún lugar algo que quizá no digo suficientemente: te quiero muchísimo y eres una persona muy importante para mí.</p>
+          <p>Y aunque probablemente nunca encuentre las palabras exactas para explicarte cuánto, espero que al menos esta pequeña página te recuerde que tienes un lugar muy bonito en mi corazón.</p>
+          <p>Gracias por existir.<br>Y gracias por haber estado ahí cuando te conocí.</p>
+          <p class="letter__signature">Con mucho cariño,<br>Sebas ♡</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--final" data-reveal>
+    <div class="section__inner">
+      <button id="finish-btn" class="btn btn--primary" type="button">♡ Terminar</button>
+      <div id="final-message" class="final-message" hidden>
+        <p>Bueno...</p>
+        <p>eso era todo.</p>
+        <p>Por ahora. 👉👈</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<button id="top-btn" class="top-btn" type="button" aria-label="Volver arriba" hidden>↑</button>
+
+<div id="finale-layer" class="finale-layer" aria-hidden="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
