@@ -3,6 +3,31 @@
   si ves esto, es pq hiciste trampa xd
    ========================================================= */
 
+   console.log(`
+╭──────────────────────────────╮
+   Hola, Glorita :3
+╰──────────────────────────────╯
+
+Si llegaste hasta aqui...
+
+No es un dia especial.
+No hay ninguna fecha importante.
+Simplemente queria hacerte algo bonito.
+
+No soy el mejor haciendo paginas web JAJAJA,
+pero hice lo mejor que pude y cada parte
+la hice pensando en ti.
+
+Espero que te haya gustado.
+
+Y por si la pagina no lo dejo suficientemente claro:
+
+Eres muy importante para mi.
+Muchisimo.
+
+— Sebas UwU
+`);
+
 (function () {
   'use strict';
 
