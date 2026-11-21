@@ -250,28 +250,66 @@ Muchisimo.
   const finalMessage = document.getElementById('final-message');
   const finaleLayer = document.getElementById('finale-layer');
 
-  const finaleSymbols = ['♡', '☁', '✦', '☁', '♡', '✦'];
+  const finalLines = finalMessage.querySelectorAll('[data-final-line]');
+  const restartBtn = document.getElementById('restart-btn');
+
+  // de dia: corazones, nubes, la abejita y la hormiguita
+  // de noche: estrellas y lunitas
+  const daySymbols = ['♡', '☁', '✦', '♡', '🐝', '♡', '☁', '🐜'];
+  const nightSymbols = ['✦', '☆', '♡', '🌙', '✦', '♡', '🐝'];
 
   finishBtn.addEventListener('click', () => {
+    finishBtn.hidden = true;
     finalMessage.hidden = false;
-    finishBtn.setAttribute('disabled', 'true');
+    revealFinalLines();
     launchFinale();
   });
+
+  restartBtn.addEventListener('click', backToGate);
+
+  function revealFinalLines() {
+    if (prefersReducedMotion) {
+      finalLines.forEach((line) => line.classList.add('is-visible'));
+      return;
+    }
+    finalLines.forEach((line, i) => {
+      window.setTimeout(() => {
+        line.classList.add('is-visible');
+        line.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 400 + i * 1400);
+    });
+  }
 
   function launchFinale() {
     if (prefersReducedMotion) return;
 
-    const total = 24;
-    for (let i = 0; i < total; i++) {
-      window.setTimeout(() => spawnFinaleItem(), i * 120);
+    // tres oleadas de cositas subiendo mientras aparecen las palabras
+    for (let wave = 0; wave < 3; wave++) {
+      for (let i = 0; i < 18; i++) {
+        window.setTimeout(() => spawnFinaleItem(), wave * 3500 + i * 140);
+      }
     }
+
+    // la abejita cruza volando y la hormiguita pasa por abajo
+    window.setTimeout(flyBee, 1800);
+    window.setTimeout(() => {
+      if (!ant.classList.contains('is-walking')) walkAnt();
+    }, 4500);
+  }
+
+  function flyBee() {
+    const bee = document.createElement('span');
+    bee.className = 'finale-bee';
+    bee.textContent = '🐝';
+    finaleLayer.appendChild(bee);
+    bee.addEventListener('animationend', () => bee.remove());
   }
 
   function spawnFinaleItem() {
+    const symbols = isNight() ? nightSymbols : daySymbols;
     const item = document.createElement('span');
     item.className = 'finale-item';
-    item.textContent =
-      finaleSymbols[Math.floor(Math.random() * finaleSymbols.length)];
+    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
     const leftPos = Math.random() * 96; // vw, con margen
     const duration = 4 + Math.random() * 3; // segundos
@@ -280,8 +318,9 @@ Muchisimo.
     item.style.left = leftPos + 'vw';
     item.style.fontSize = size + 'rem';
     item.style.animationDuration = duration + 's';
-    item.style.color =
-      Math.random() > 0.5 ? '#5B9BD5' : '#E79BC1';
+    item.style.color = isNight()
+      ? Math.random() > 0.5 ? '#FDF3C4' : '#F6CFE0'
+      : Math.random() > 0.5 ? '#5B9BD5' : '#E79BC1';
 
     finaleLayer.appendChild(item);
 
@@ -304,7 +343,9 @@ Muchisimo.
   const enterLabel = enterBtn.querySelector('.gate__enter-label');
 
   // Al subir del todo, vuelve la portada con un mensaje extra.
-  topBtn.addEventListener('click', () => {
+  topBtn.addEventListener('click', backToGate);
+
+  function backToGate() {
     if (gate.hidden) {
       const prevY = window.scrollY;
       gate.hidden = false;
@@ -322,5 +363,5 @@ Muchisimo.
       top: 0,
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
     });
-  });
+  }
 })();

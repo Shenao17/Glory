@@ -12,7 +12,8 @@
 <meta property="og:title" content="Para ti, Glorita ♡">
 <meta property="og:description" content="Un pequeño lugar para recordarte lo importante que eres para mí.">
 <meta property="og:url" content="https://shenao17.github.io/Glory/">
-<meta property="og:image" content="https://shenao17.github.io/Glory/assets/og-image.jpg">
+<meta property="og:image" content="https://shenao17.github.io/Glory/assets/og-image.jpg?v=2">
+<meta property="og:image:alt" content="Cinnamonroll con una abejita y una hormiguita: Para ti, Glorita ♡">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,10 +221,27 @@
   <section class="section section--final" data-reveal>
     <div class="section__inner">
       <button id="finish-btn" class="btn btn--primary" type="button">♡ Terminar</button>
+      <!-- las lineas aparecen una por una al tocar "Terminar" -->
       <div id="final-message" class="final-message" hidden>
-        <p>Bueno...</p>
-        <p>eso era todo.</p>
-        <p>Por ahora. 👉👈</p>
+        <p data-final-line>Bueno...</p>
+        <p data-final-line>eso era todo.</p>
+        <p data-final-line>Gracias por llegar hasta aquí, Glorita.</p>
+        <p data-final-line>Por la hormiguita 🐜, por la abejita de papel 🐝<br>y por haber estado ahí cuando más lo necesitaba.</p>
+        <p data-final-line>Esta página se queda aquí, siempre,<br>para cuando quieras volver.</p>
+        <p data-final-line class="final-message__big">Por ahora. 👉👈</p>
+        <p data-final-line class="final-message__sign">— Sebas ♡</p>
+
+        <div class="final-goodbye" data-final-line>
+          <div class="final-goodbye__cinna" aria-hidden="true">
+            <img src="assets/cinnamonroll-big.png" alt="">
+          </div>
+          <p class="final-goodbye__bubble">
+            <span class="day-only">¡Bye bye, Glorita! Vuelve pronto ♡</span>
+            <span class="night-only">zzz... buenas noches, Glorita ♡</span>
+          </p>
+        </div>
+
+        <button id="restart-btn" class="btn btn--secondary final-restart" type="button" data-final-line>♡ Volver al inicio</button>
       </div>
     </div>
   </section>

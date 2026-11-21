@@ -95,6 +95,14 @@ Lo importante es que fue hecha con mucho cariño. ♡
 
 ## 📜 Changelog
 
+### v1.6 — Un final más bonito
+**21 de noviembre de 2026**
+
+- El botón "Terminar" ahora muestra un mensaje de despedida línea por línea.
+- Una abejita cruza volando, pasa la hormiguita, y Cinnamonroll se despide (o da las buenas noches si es de noche).
+- Botón "Volver al inicio" al final.
+- Nueva imagen de vista previa para WhatsApp: Cinnamonroll, la abejita y la hormiga.
+
 ### v1.5 — Noche, abejita y hormiguita
 **21 de noviembre de 2026**
 
