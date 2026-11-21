@@ -4,7 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Para ti, Glorita ♡</title>
-<link rel="icon" type="image/png" href="assets/icon.png">
+<meta name="description" content="Un pequeño lugar para recordarte lo importante que eres para mí.">
+<meta name="theme-color" content="#D9EEFB">
+
+<!-- vista previa al compartir el link (WhatsApp, Instagram, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Para ti, Glorita ♡">
+<meta property="og:description" content="Un pequeño lugar para recordarte lo importante que eres para mí.">
+<meta property="og:url" content="https://shenao17.github.io/Glory/">
+<meta property="og:image" content="https://shenao17.github.io/Glory/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,13 +52,15 @@
 <section id="gate" class="gate">
   <div class="gate__content">
     <div class="gate__companion" aria-hidden="true">
-      <img src="assets/cinnamonroll-hero.png" alt="" class="gate__companion-img" onerror="this.style.display='none'; this.parentElement.classList.add('gate__companion--placeholder');">
+      <img src="assets/cinnamonroll-hero.webp" alt="" class="gate__companion-img" onerror="this.style.display='none'; this.parentElement.classList.add('gate__companion--placeholder');">
       <span class="gate__companion-fallback">☁</span>
     </div>
     <h1 class="gate__title">Esto es para ti, Glorita <span class="heart">♡</span></h1>
     <p class="gate__subtitle">Un pequeño lugar para recordarte lo importante que eres para mí.</p>
+    <!-- solo aparece cuando vuelve a subir del todo con el boton ↑ -->
+    <p class="gate__return" id="gate-return" hidden>Ya lo viste todo... pero esto va a seguir aquí siempre, igual que yo para ti. <span class="heart">♡</span></p>
     <button id="enter-btn" class="btn btn--primary gate__enter" type="button">
-      <span class="heart heart--small">♡</span> Entrar
+      <span class="heart heart--small">♡</span> <span class="gate__enter-label">Entrar</span>
     </button>
   </div>
 </section>
@@ -60,23 +80,23 @@
       <p class="section__hint">Toca cada nube para abrirla.</p>
       <div class="card-grid" data-card-grid>
         <button class="flip-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--front"><span class="sr-only">Abrir nube</span></span>
           <span class="flip-card__face flip-card__face--back">Eres importante para mí.</span>
         </button>
         <button class="flip-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--front"><span class="sr-only">Abrir nube</span></span>
           <span class="flip-card__face flip-card__face--back">Me alegra muchísimo haberte conocido.</span>
         </button>
         <button class="flip-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--front"><span class="sr-only">Abrir nube</span></span>
           <span class="flip-card__face flip-card__face--back">Tu presencia hace que ciertos momentos sean mucho más bonitos.</span>
         </button>
         <button class="flip-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--front"><span class="sr-only">Abrir nube</span></span>
           <span class="flip-card__face flip-card__face--back">No tienes que hacer nada extraordinario para ser especial para mí.</span>
         </button>
         <button class="flip-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">☁</span>
+          <span class="flip-card__face flip-card__face--front"><span class="sr-only">Abrir nube</span></span>
           <span class="flip-card__face flip-card__face--back">Te quiero muchísimo, incluso cuando no sé cómo expresarlo.</span>
         </button>
       </div>

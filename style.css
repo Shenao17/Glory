@@ -3,8 +3,6 @@
    Paleta: cielo azul, celeste, blanco, detalles rosados
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-
 :root{
   /* --- color --- */
   --sky-deep:    #5B9BD5;
@@ -152,6 +150,18 @@ img{ max-width: 100%; display: block; }
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 .gate.is-leaving{ opacity: 0; visibility: hidden; pointer-events: none; }
+.gate[hidden]{ display: none; }
+
+/* mensaje extra al volver a la portada */
+.gate__return{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 3.2vw, 1.25rem);
+  color: var(--pink-deep);
+  max-width: 26rem;
+  margin: -0.8rem auto 2rem;
+  animation: rise-in 1s ease 0.4s both;
+}
 
 .gate__content{ max-width: 32rem; }
 
@@ -238,22 +248,30 @@ img{ max-width: 100%; display: block; }
 .reveal-text .word.is-visible{ opacity: 1; transform: translateY(0); }
 
 /* ---------- tarjetas volteables ---------- */
+/* flex en vez de grid para que la ultima fila (si queda incompleta) se centre */
 .card-grid, .memory-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1.2rem;
+  --cols: 2;
+  --gap: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap);
   perspective: 1000px;
 }
 
 .flip-card, .memory-card{
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
   position: relative;
+  /* las dos caras se apilan en la misma celda: la tarjeta crece con el texto mas largo */
+  display: grid;
   min-height: 140px;
   border-radius: 44% 56% 52% 48% / 55% 48% 52% 45%;
   background: linear-gradient(160deg, #fff, var(--sky-soft));
   box-shadow: 0 12px 28px -16px rgba(91,155,213,0.55);
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
-  padding: 1rem;
+  padding: 0;
 }
 .memory-card{
   min-height: 120px;
@@ -264,15 +282,61 @@ img{ max-width: 100%; display: block; }
 .flip-card.is-flipped, .memory-card.is-flipped{ transform: rotateY(180deg); }
 
 .flip-card__face{
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1rem;
+  line-height: 1.4;
+  padding: 1.2rem 1.1rem;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: inherit;
+}
+/* ---------- nubes de verdad (seccion "Lo que quiero que recuerdes") ----------
+   La forma vive en assets/cloud-front.svg y assets/cloud-back.svg.
+   La tarjeta mantiene la proporcion del dibujo (3:2) y el texto va
+   dentro del "cuerpo" de la nube gracias al padding en %. */
+.section--cards .section__inner{ max-width: 54rem; }
+
+.flip-card{
+  aspect-ratio: 3 / 2;
+  min-height: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  transition: transform 0.6s cubic-bezier(.4,.2,.2,1), translate 0.3s ease;
+  animation: cloud-bob 6s ease-in-out infinite;
+}
+.flip-card:nth-child(2){ animation-delay: -1.2s; }
+.flip-card:nth-child(3){ animation-delay: -2.4s; }
+.flip-card:nth-child(4){ animation-delay: -3.6s; }
+.flip-card:nth-child(5){ animation-delay: -4.8s; }
+.flip-card:hover{ animation-play-state: paused; translate: 0 -6px; }
+
+@keyframes cloud-bob{
+  0%, 100%{ translate: 0 0; }
+  50%{ translate: 0 -7px; }
+}
+
+.flip-card .flip-card__face{
+  border-radius: 0;
+  background: url('assets/cloud-front.svg') center / 100% 100% no-repeat;
+  /* zona de texto: dentro del cuerpo de la nube, debajo de los bultos */
+  padding: 20% 15% 13%;
+}
+.flip-card .flip-card__face--back{
+  background-image: url('assets/cloud-back.svg');
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.sr-only{
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 .flip-card__face--front{
   font-size: 2rem;
@@ -465,11 +529,19 @@ img{ max-width: 100%; display: block; }
 
 /* ---------- responsive ajustes ---------- */
 @media (max-width: 420px){
-  .card-grid, .memory-grid{ grid-template-columns: repeat(2, 1fr); }
+  .card-grid, .memory-grid{ --gap: 0.9rem; }
   .section{ padding: clamp(3rem, 14vw, 5rem) 1.1rem; }
 }
 
-@media (min-width: 900px){
-  .card-grid{ grid-template-columns: repeat(3, 1fr); }
-  .memory-grid{ grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 640px){
+  .card-grid, .memory-grid{ --cols: 3; }
+}
+
+/* en celular las nubes van una por linea, en zigzag, como flotando en el cielo */
+@media (max-width: 559px){
+  .card-grid{ --cols: 1; row-gap: 0.4rem; }
+  .flip-card{ flex-basis: min(300px, 84%); }
+  .flip-card:nth-child(odd){ margin-right: auto; }
+  .flip-card:nth-child(even){ margin-left: auto; }
+  .flip-card .flip-card__face--back{ font-size: 0.95rem; }
 }

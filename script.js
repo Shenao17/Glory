@@ -43,12 +43,12 @@ Muchisimo.
     gate.classList.add('is-leaving');
     main.hidden = false;
 
-    const delay = prefersReducedMotion ? 0 : 650;
+    // Al terminar el desvanecido se quita la portada del flujo,
+    // asi no queda una pantalla en blanco arriba al hacer scroll.
+    const delay = prefersReducedMotion ? 0 : 800;
     window.setTimeout(() => {
-      main.scrollIntoView({
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-        block: 'start',
-      });
+      gate.hidden = true;
+      window.scrollTo({ top: 0, behavior: 'auto' });
       revealVisibleSections();
     }, delay);
   });
@@ -218,11 +218,32 @@ Muchisimo.
 
   const topBtn = document.getElementById('top-btn');
 
-  window.addEventListener('scroll', () => {
-    topBtn.hidden = window.scrollY < window.innerHeight * 0.6;
-  });
+  window.addEventListener(
+    'scroll',
+    () => {
+      topBtn.hidden = window.scrollY < window.innerHeight * 0.6;
+    },
+    { passive: true }
+  );
 
+  const gateReturn = document.getElementById('gate-return');
+  const enterLabel = enterBtn.querySelector('.gate__enter-label');
+
+  // Al subir del todo, vuelve la portada con un mensaje extra.
   topBtn.addEventListener('click', () => {
+    if (gate.hidden) {
+      const prevY = window.scrollY;
+      gate.hidden = false;
+      gateReturn.hidden = false;
+      enterLabel.textContent = 'Volver a entrar';
+
+      // La portada empuja todo hacia abajo: compensamos para que no salte
+      // y luego subimos suave hasta ella.
+      window.scrollTo({ top: prevY + gate.offsetHeight, behavior: 'auto' });
+      void gate.offsetWidth;
+      gate.classList.remove('is-leaving');
+    }
+
     window.scrollTo({
       top: 0,
       behavior: prefersReducedMotion ? 'auto' : 'smooth',

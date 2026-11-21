@@ -53,7 +53,13 @@ La estructura principal del proyecto es:
 - `style.css` — estilos, diseño y animaciones.
 - `script.js` — interactividad y lógica.
 - `README.md` — documentación del proyecto.
-- `assets/icon.png` — favicon de la página.
+- `assets/favicon.png` — favicon de la página (64×64).
+- `assets/apple-touch-icon.png` — icono al guardar la página en el inicio del iPhone.
+- `assets/cinnamonroll-hero.webp` — imagen de la portada (versión optimizada).
+- `assets/cinnamonroll-big.png` — imagen de la sección de Cinnamonroll.
+- `assets/cloud-front.svg` y `assets/cloud-back.svg` — dibujo de las nubes (frente y reverso).
+- `assets/og-image.jpg` — imagen de vista previa al compartir el link.
+- `assets/icon.png` y `assets/cinnamonroll-hero.png` — originales en alta resolución (no se cargan en la página).
 
 ---
 
@@ -89,6 +95,23 @@ Lo importante es que fue hecha con mucho cariño. ♡
 
 ## 📜 Changelog
 
+### v1.4 — Nubes de verdad
+**21 de noviembre de 2026**
+
+- Las tarjetas de "Lo que quiero que recuerdes" ahora son nubes de verdad, con carita, que flotan suavecito.
+- En el celular las nubes van una por línea, en zigzag.
+- Al volver arriba con el botón ↑ reaparece la portada con un mensaje nuevo. ♡
+
+### v1.3 — Arreglitos
+**21 de noviembre de 2026**
+
+- La portada ya no deja una pantalla en blanco arriba después de entrar.
+- Las tarjetas crecen con su texto y ya no se desborda en el celular.
+- Las tarjetas se voltean bien en Safari / iPhone.
+- La última fila de tarjetas queda centrada.
+- Imágenes optimizadas: la página carga mucho más rápido.
+- Vista previa bonita al compartir el link (WhatsApp, etc.).
+
 ### v1.2 — Favicon
 **14 de septiembre de 2026**
 
@@ -121,7 +144,7 @@ Lo importante es que fue hecha con mucho cariño. ♡
 La página está publicada mediante GitHub Pages.
 
 **Fecha de creación:** 13 de septiembre de 2026  
-**Última actualización:** 14 de septiembre de 2026
+**Última actualización:** 21 de noviembre de 2026
 
 ---
 
