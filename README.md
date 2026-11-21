@@ -95,6 +95,15 @@ Lo importante es que fue hecha con mucho cariño. ♡
 
 ## 📜 Changelog
 
+### v1.5 — Noche, abejita y hormiguita
+**21 de noviembre de 2026**
+
+- Modo noche: de 7pm a 6am el cielo se oscurece, salen la luna y las estrellas, y Cinnamonroll se duerme (con sus Zzz). Botón 🌙/☀️ para cambiarlo a mano.
+- De noche Cinnamonroll habla entre sueños.
+- Nuevos recuerdos: la hormiga 🐜 (el primer regalo) y la abejita de Minecraft de papel 🐝.
+- Una nube secreta escondida en la sección "Gracias".
+- Una hormiguita cruza la pantalla de vez en cuando. Si la tocas, te dice algo. 👀
+
 ### v1.4 — Nubes de verdad
 **21 de noviembre de 2026**
 

@@ -24,6 +24,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
+<script>
+  // de noche (7pm a 6am) la pagina se pone en modo noche desde el inicio
+  (function () {
+    var h = new Date().getHours();
+    if (h >= 19 || h < 6) document.documentElement.setAttribute('data-theme', 'night');
+  })();
+</script>
 </head>
 <body>
 
@@ -32,7 +39,12 @@
   <div class="cloud cloud--b"></div>
   <div class="cloud cloud--c"></div>
   <div class="stars"></div>
+  <div class="stars stars--night"></div>
+  <div class="moon"></div>
 </div>
+
+<!-- dia / noche (de noche se activa solo) -->
+<button id="theme-btn" class="theme-btn" type="button" aria-label="Cambiar a modo noche">🌙</button>
 
 <!--
   Si estas leyendo esto...
@@ -54,9 +66,11 @@
     <div class="gate__companion" aria-hidden="true">
       <img src="assets/cinnamonroll-hero.webp" alt="" class="gate__companion-img" onerror="this.style.display='none'; this.parentElement.classList.add('gate__companion--placeholder');">
       <span class="gate__companion-fallback">☁</span>
+      <span class="zzz night-only" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></span>
     </div>
     <h1 class="gate__title">Esto es para ti, Glorita <span class="heart">♡</span></h1>
     <p class="gate__subtitle">Un pequeño lugar para recordarte lo importante que eres para mí.</p>
+    <p class="gate__night night-only">Shh... es de noche y Cinnamonroll ya está dormido 🌙</p>
     <!-- solo aparece cuando vuelve a subir del todo con el boton ↑ -->
     <p class="gate__return" id="gate-return" hidden>Ya lo viste todo... pero esto va a seguir aquí siempre, igual que yo para ti. <span class="heart">♡</span></p>
     <button id="enter-btn" class="btn btn--primary gate__enter" type="button">
@@ -127,24 +141,24 @@
       <p class="section__hint">Toca cada una.</p>
       <div class="memory-grid" data-card-grid>
         <button class="memory-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">Una conversación inesperada</span>
-          <span class="flip-card__face flip-card__face--back">De esas que empiezan sin planearlo y terminan quedándose contigo el resto del día.</span>
+          <span class="flip-card__face flip-card__face--front"><span class="memory-card__emoji" aria-hidden="true">🐜</span>Una hormiga</span>
+          <span class="flip-card__face flip-card__face--back">Mi primer regalo tuyo fue un emoji de hormiga. Parece poquito, pero me encantó. Me fascinó.</span>
         </button>
         <button class="memory-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">Un momento tranquilo</span>
-          <span class="flip-card__face flip-card__face--back">Esos silencios cómodos en los que no hace falta decir nada para sentirse bien.</span>
+          <span class="flip-card__face flip-card__face--front"><span class="memory-card__emoji" aria-hidden="true">🐝</span>Una abeja de papel</span>
+          <span class="flip-card__face flip-card__face--back">La abejita de Minecraft que hiciste a mano para mí. Hecha por ti, con tus manos. Eso la hace especialísima.</span>
         </button>
         <button class="memory-card" type="button" data-flip>
           <span class="flip-card__face flip-card__face--front">Una risa</span>
           <span class="flip-card__face flip-card__face--back">Tu risa tiene la costumbre de quedarse sonando en mi cabeza un rato después.</span>
         </button>
         <button class="memory-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">Una noche cualquiera</span>
-          <span class="flip-card__face flip-card__face--back">Algunas de las noches más comunes terminaron siendo las que más recuerdo.</span>
+          <span class="flip-card__face flip-card__face--front">Un momento tranquilo</span>
+          <span class="flip-card__face flip-card__face--back">Esos silencios cómodos en los que no hace falta decir nada para sentirse bien.</span>
         </button>
         <button class="memory-card" type="button" data-flip>
-          <span class="flip-card__face flip-card__face--front">Un recuerdo que todavía guardo</span>
-          <span class="flip-card__face flip-card__face--back">Uno pequeño, de esos que no le cuento a nadie, pero que sigo guardando con cariño.</span>
+          <span class="flip-card__face flip-card__face--front">Una noche cualquiera</span>
+          <span class="flip-card__face flip-card__face--back">Algunas de las noches más comunes terminaron siendo las que más recuerdo.</span>
         </button>
       </div>
     </div>
@@ -152,11 +166,15 @@
 
   <section class="section section--cinnamon" data-reveal>
     <div class="section__inner">
-      <h2 class="section__eyebrow">Cinnamonroll tiene algo que decirte...</h2>
+      <h2 class="section__eyebrow">
+        <span class="day-only">Cinnamonroll tiene algo que decirte...</span>
+        <span class="night-only">Cinnamonroll está dormidito... pero te dejó algo 🌙</span>
+      </h2>
       <div class="cinnamon-stage">
         <div class="cinnamon-figure" aria-hidden="true">
           <img src="assets/cinnamonroll-big.png" alt="" class="cinnamon-figure__img" onerror="this.style.display='none'; this.parentElement.classList.add('cinnamon-figure--placeholder');">
           <span class="cinnamon-figure__fallback">☁</span>
+          <span class="zzz night-only" aria-hidden="true"><span>z</span><span>z</span><span>Z</span></span>
         </div>
         <button id="cinnamon-btn" class="btn btn--secondary" type="button">¿Qué será? 👀</button>
         <p id="cinnamon-message" class="cinnamon-message" aria-live="polite"></p>
@@ -165,11 +183,17 @@
   </section>
 
   <section class="section section--thanks" data-reveal>
+    <!-- psst: nube secreta -->
+    <button class="secret-cloud" id="secret-cloud" type="button" aria-label="Una nubecita escondida"></button>
     <div class="section__inner section__inner--narrow">
       <h2 class="section__eyebrow">Gracias</h2>
       <p>Gracias por estar.</p>
       <p>Gracias por los momentos, por las conversaciones, por las risas y hasta por esas pequeñas cosas que probablemente tú ni recuerdas.</p>
       <p>Puede que para ti algunas hayan sido cosas normales, pero para mí se quedaron guardadas.</p>
+      <p class="secret-message" id="secret-message" hidden>
+        ¡Encontraste la nube secreta! ☁<br>
+        Aquí se escondía una abejita 🐝, igualita a la que me hiciste.
+      </p>
     </div>
   </section>
 
@@ -207,6 +231,10 @@
 </main>
 
 <button id="top-btn" class="top-btn" type="button" aria-label="Volver arriba" hidden>↑</button>
+
+<!-- una hormiguita pasa de vez en cuando... -->
+<button id="ant" class="ant" type="button" aria-label="Una hormiguita" hidden>🐜</button>
+<p id="ant-toast" class="ant-toast" role="status" hidden>🐜 ¿Te acuerdas? Mi primer regalo tuyo. ♡</p>
 
 <div id="finale-layer" class="finale-layer" aria-hidden="true"></div>
 

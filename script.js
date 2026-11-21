@@ -117,6 +117,77 @@ Muchisimo.
     });
   });
 
+  /* ---------- modo noche ---------- */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme-btn');
+
+  function isNight() {
+    return root.getAttribute('data-theme') === 'night';
+  }
+
+  function syncThemeBtn() {
+    themeBtn.textContent = isNight() ? '☀️' : '🌙';
+    themeBtn.setAttribute(
+      'aria-label',
+      isNight() ? 'Cambiar a modo día' : 'Cambiar a modo noche'
+    );
+  }
+
+  themeBtn.addEventListener('click', () => {
+    if (isNight()) root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', 'night');
+    syncThemeBtn();
+    // si Cinnamonroll estaba hablando, se "despierta" / "duerme" y se calla
+    const msg = document.getElementById('cinnamon-message');
+    if (msg) msg.textContent = '';
+  });
+  syncThemeBtn();
+
+  /* ---------- nube secreta ---------- */
+  const secretCloud = document.getElementById('secret-cloud');
+  const secretMessage = document.getElementById('secret-message');
+
+  secretCloud.addEventListener('click', () => {
+    secretCloud.classList.add('is-found');
+    secretMessage.hidden = false;
+  });
+
+  /* ---------- hormiguita ---------- */
+  const ant = document.getElementById('ant');
+  const antToast = document.getElementById('ant-toast');
+  let antToastTimer;
+
+  function walkAnt() {
+    ant.hidden = false;
+    ant.classList.remove('is-walking');
+    void ant.offsetWidth;
+    ant.classList.add('is-walking');
+  }
+
+  ant.addEventListener('animationend', () => {
+    ant.classList.remove('is-walking');
+    ant.hidden = true;
+    // vuelve a pasar en un rato (entre 35 y 70 segundos)
+    window.setTimeout(walkAnt, 35000 + Math.random() * 35000);
+  });
+
+  ant.addEventListener('click', () => {
+    antToast.hidden = false;
+    window.clearTimeout(antToastTimer);
+    antToastTimer = window.setTimeout(() => {
+      antToast.hidden = true;
+    }, 4500);
+  });
+
+  // la primera vez aparece un ratito despues de entrar
+  if (!prefersReducedMotion) {
+    enterBtn.addEventListener(
+      'click',
+      () => window.setTimeout(walkAnt, 12000),
+      { once: true }
+    );
+  }
+
   const cinnamonBtn = document.getElementById('cinnamon-btn');
   const cinnamonMessage = document.getElementById('cinnamon-message');
 
@@ -144,7 +215,10 @@ Muchisimo.
     const animClass =
       cinnamonAnimations[Math.floor(Math.random() * cinnamonAnimations.length)];
 
-    cinnamonMessage.textContent = cinnamonPhrases[index];
+    // de noche Cinnamonroll habla entre sueños
+    cinnamonMessage.textContent = isNight()
+      ? `(entre sueños) ${cinnamonPhrases[index]} ...zzz`
+      : cinnamonPhrases[index];
 
     cinnamonAnimations.forEach((c) => cinnamonMessage.classList.remove(c));
     if (!prefersReducedMotion) {

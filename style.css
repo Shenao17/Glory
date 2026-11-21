@@ -176,9 +176,9 @@ img{ max-width: 100%; display: block; }
   justify-content: center;
   box-shadow: 0 20px 40px -20px rgba(91,155,213,0.6);
   animation: float 5s ease-in-out infinite;
-  overflow: hidden;
+  position: relative;
 }
-.gate__companion-img{ width: 100%; height: 100%; object-fit: cover; }
+.gate__companion-img{ width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .gate__companion-fallback{ display: none; font-size: 4rem; color: var(--sky-deep); }
 .gate__companion--placeholder .gate__companion-fallback{ display: block; }
 
@@ -398,9 +398,9 @@ img{ max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   box-shadow: 0 20px 45px -20px rgba(91,155,213,0.6);
-  overflow: hidden;
+  position: relative;
 }
-.cinnamon-figure__img{ width: 100%; height: 100%; object-fit: cover; }
+.cinnamon-figure__img{ width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .cinnamon-figure__fallback{ display: none; font-size: 5rem; color: var(--sky-deep); }
 .cinnamon-figure--placeholder .cinnamon-figure__fallback{ display: block; }
 
@@ -544,4 +544,208 @@ img{ max-width: 100%; display: block; }
   .flip-card:nth-child(odd){ margin-right: auto; }
   .flip-card:nth-child(even){ margin-left: auto; }
   .flip-card .flip-card__face--back{ font-size: 0.95rem; }
+}
+
+/* =========================================================
+   Recuerdos con emoji (hormiga, abeja)
+   ========================================================= */
+.memory-card .flip-card__face--front{ flex-direction: column; gap: 0.35rem; }
+.memory-card__emoji{ font-size: 1.9rem; line-height: 1; }
+
+/* =========================================================
+   Nube secreta (seccion "Gracias")
+   ========================================================= */
+.section--thanks{ position: relative; }
+.secret-cloud{
+  position: absolute;
+  top: 1.2rem;
+  right: 7%;
+  width: 66px;
+  aspect-ratio: 3 / 2;
+  background: url('assets/cloud-front.svg') center / 100% 100% no-repeat;
+  opacity: 0.45;
+  animation: cloud-bob 5s ease-in-out infinite;
+  transition: opacity 0.3s ease, scale 0.3s ease;
+}
+.secret-cloud:hover{ opacity: 0.8; }
+.secret-cloud.is-found{ opacity: 1; scale: 1.25; animation: none; }
+
+.secret-message{
+  margin: 2rem auto 0;
+  padding: 1.1rem 1.4rem;
+  max-width: 26rem;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--ink-on-light);
+  font-family: var(--font-display);
+  font-weight: 700;
+  box-shadow: 0 18px 40px -22px rgba(91,155,213,0.6);
+  animation: pop-in 0.5s ease;
+}
+
+/* =========================================================
+   Hormiguita que cruza la pantalla de vez en cuando
+   ========================================================= */
+.ant{
+  position: fixed;
+  bottom: 0.4rem;
+  left: 100%;
+  z-index: 6;
+  font-size: 1.5rem;
+  padding: 0.3rem;
+  line-height: 1;
+}
+.ant.is-walking{ animation: ant-walk 14s linear forwards; }
+@keyframes ant-walk{
+  0%{ translate: 0 0; }
+  25%{ translate: -32vw -2px; }
+  50%{ translate: -62vw 0; }
+  75%{ translate: -90vw -2px; }
+  100%{ translate: calc(-100vw - 3rem) 0; }
+}
+.ant-toast{
+  position: fixed;
+  left: 50%;
+  bottom: 3.5rem;
+  translate: -50% 0;
+  z-index: 7;
+  margin: 0;
+  padding: 0.7rem 1.2rem;
+  width: max-content;
+  max-width: min(22rem, calc(100vw - 6rem));
+  border-radius: 18px;
+  background: #fff;
+  color: var(--ink-on-light);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
+  box-shadow: 0 14px 30px -14px rgba(51,68,90,0.5);
+  animation: rise-in 0.4s ease;
+}
+
+/* =========================================================
+   Modo noche
+   ========================================================= */
+:root{ --ink-on-light: #33445A; }
+
+/* textos que siempre van sobre fondo claro */
+.btn--secondary,
+.memory-card .flip-card__face--front,
+.letter__paper{ color: var(--ink-on-light); }
+
+.night-only{ display: none; }
+html[data-theme="night"] .night-only{ display: revert; }
+html[data-theme="night"] .day-only{ display: none; }
+
+.theme-btn{
+  position: fixed;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  z-index: 8;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.15rem;
+  background: rgba(255,255,255,0.65);
+  box-shadow: 0 8px 20px -10px rgba(51,68,90,0.5);
+  transition: transform 0.25s ease;
+}
+.theme-btn:hover{ transform: rotate(-12deg) scale(1.08); }
+
+.moon, .stars--night{ display: none; }
+
+html[data-theme="night"]{
+  --ink: #EEF4FB;
+  --ink-soft: #B9C8DD;
+}
+html[data-theme="night"] .letter__seal-label{ color: #8FC1E8; }
+html[data-theme="night"] body{
+  background: linear-gradient(180deg, #0E1A33 0%, #18294A 45%, #26375E 100%);
+}
+html[data-theme="night"] .theme-btn{ background: rgba(255,255,255,0.12); }
+html[data-theme="night"] .cloud{ opacity: 0.12; }
+html[data-theme="night"] .stars{ opacity: 0.9; }
+html[data-theme="night"] .stars--night{
+  display: block;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 12%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 18% 34%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 27% 8%, #FDF3C4 50%, transparent 100%),
+    radial-gradient(1px 1px at 36% 46%, #fff 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 47% 22%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 55% 64%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 63% 30%, #F6CFE0 50%, transparent 100%),
+    radial-gradient(1px 1px at 72% 52%, #fff 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 81% 26%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 90% 58%, #fff 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 14% 72%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 42% 86%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 68% 80%, #FDF3C4 50%, transparent 100%),
+    radial-gradient(1px 1px at 94% 90%, #fff 50%, transparent 100%);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+@keyframes twinkle{ from{ opacity: 0.45; } to{ opacity: 1; } }
+
+html[data-theme="night"] .moon{
+  display: block;
+  position: absolute;
+  top: 9%;
+  left: 8%;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  box-shadow: inset -14px 8px 0 0 #FDF3C4;
+  filter: drop-shadow(0 0 14px rgba(253,243,196,0.55));
+  rotate: -20deg;
+}
+
+/* Cinnamonroll dormido: un poquito mas oscuro y con Zzz */
+html[data-theme="night"] .gate__companion,
+html[data-theme="night"] .cinnamon-figure{
+  background: radial-gradient(circle at 35% 30%, #DCE6F5, #9FB4D6);
+  box-shadow: 0 0 50px -10px rgba(253,243,196,0.35);
+}
+html[data-theme="night"] .gate__companion-img,
+html[data-theme="night"] .cinnamon-figure__img{ filter: brightness(0.82) saturate(0.85); }
+
+.zzz{
+  position: absolute;
+  top: 4%;
+  right: -2.6rem;
+  width: 2.6rem;
+  height: 4rem;
+  text-shadow: 0 0 10px rgba(253,243,196,0.6);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #FDF3C4;
+  pointer-events: none;
+}
+html[data-theme="night"] .zzz{ display: block; }
+.zzz span{
+  position: absolute;
+  opacity: 0;
+  animation: zzz 3s ease-in-out infinite;
+}
+.zzz span:nth-child(1){ font-size: 1rem;   right: 1.6rem; top: 2.4rem; }
+.zzz span:nth-child(2){ font-size: 1.3rem; right: 0.8rem; top: 1.2rem; animation-delay: 1s; }
+.zzz span:nth-child(3){ font-size: 1.7rem; right: 0;      top: 0;      animation-delay: 2s; }
+@keyframes zzz{
+  0%{ opacity: 0; translate: 0 8px; }
+  30%{ opacity: 1; }
+  100%{ opacity: 0; translate: 6px -14px; }
+}
+
+.gate__night{
+  color: #FDF3C4;
+  font-size: 0.98rem;
+  margin: -1.2rem 0 1.8rem;
+}
+
+html[data-theme="night"] .section--gratitude{
+  background: linear-gradient(180deg, transparent, rgba(231,155,193,0.08), transparent);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .ant{ display: none; }
 }
